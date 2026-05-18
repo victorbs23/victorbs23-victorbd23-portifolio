@@ -5,6 +5,7 @@ Portfólio desenvolvido para apresentar meus projetos acadêmicos e pessoais.
 ## Tecnologias
 - HTML
 - CSS
+- JavaScript
 
 
 ## Acesso
