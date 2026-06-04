@@ -40,7 +40,7 @@ const highlightCurrentSection = () => {
 window.addEventListener('scroll', highlightCurrentSection);
 window.addEventListener('load', highlightCurrentSection);
 
-contactForm?.addEventListener('submit', (event) => {
+contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const name = document.getElementById('name')?.value.trim();
@@ -52,7 +52,50 @@ contactForm?.addEventListener('submit', (event) => {
         formFeedback.style.color = '#dc2626';
         return;
     }
-    const formspreeId = 'xeewjyek
+   // Insira o ID do formulário do Formspree aqui.
+    // Exemplo: se o link fornecido pelo Formspree for https://formspree.io/f/xbjwpnzd, o ID é "xbjwpnzd".
+    const formspreeId = 'xeewjyek'; 
+
+    if (formspreeId === 'xeewjyek') {
+        formFeedback.textContent = 'Configuração pendente: Por favor, insira o ID do Formspree no arquivo script.js para começar a receber as mensagens.';
+        formFeedback.style.color = '#d97706';
+        return;
+    }
+
+    formFeedback.textContent = 'Enviando mensagem...';
+    formFeedback.style.color = '#2563eb';
+
+    try {
+        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            })
+        });
+
+        if (response.ok) {
+            formFeedback.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+            formFeedback.style.color = '#16a34a';
+            contactForm.reset();
+        } else {
+            const data = await response.json();
+            if (data.errors && data.errors.length > 0) {
+                formFeedback.textContent = `Erro: ${data.errors.map(err => err.message).join(', ')}`;
+            } else {
+                formFeedback.textContent = 'Não foi possível enviar a mensagem. Tente novamente.';
+            }
+            formFeedback.style.color = '#dc2626';
+        }
+    } catch (error) {
+        formFeedback.textContent = 'Erro ao enviar a mensagem. Verifique sua conexão.';
+        formFeedback.style.color = '#dc2626';
+    }
 12:37, 03';
     
     formFeedback.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
