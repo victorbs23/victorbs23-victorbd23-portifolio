@@ -7,6 +7,5 @@ Portfólio desenvolvido para apresentar meus projetos acadêmicos e pessoais.
 - CSS
 - JavaScript
 
-
 ## Acesso
-Link: [victorbs23-victorbd23-portifolio.github.io](https://victorbs23.github.io/victorbs23-victorbd23-portifolio/)****
+Link: [victorbs23-victorbd23-portifolio.github.io](https://victorbs23.github.io/victorbs23-victorbd23-portifolio/)
